@@ -1,14 +1,12 @@
 package com.example.library.controller;
 
-import com.example.library.model.BookEntity;
-import com.example.library.model.request.AuthDto;
+
+import com.example.library.model.RowEntity;
 import com.example.library.model.request.BookDto;
-import com.example.library.model.response.BookResponseDto;
-import com.example.library.model.response.BronResponse;
-import com.example.library.model.response.JwtResponse;
-import com.example.library.model.response.TakeAwayResponseDto;
+import com.example.library.model.response.*;
 import com.example.library.service.BookService;
 import com.example.library.service.BronService;
+import com.example.library.service.RowService;
 import com.example.library.service.TakeAwayService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.PermitAll;
@@ -20,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,6 +29,7 @@ public class ModeratorController {
     private final TakeAwayService takeAwayService;
     private final ModelMapper modelMapper;
     private final BronService bronService;
+    private final RowService rowService;
     @PreAuthorize("hasRole('MODERATOR')")
     @PostMapping("/addBook")
     public BookResponseDto createBook(@Valid @RequestBody BookDto dto) {
@@ -45,20 +45,27 @@ public class ModeratorController {
     public List<BookResponseDto> searchByName(@RequestParam String name) {
         return modelMapper.map(bookService.searchByName(name), new TypeToken<List<BookResponseDto>>(){}.getType());
     }
+
     @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/searchByAuthorAndName")
     public List<BookResponseDto> searchByAuthorAndName(@RequestParam String author, @RequestParam String name) {
         return modelMapper.map(bookService.searchByAuthorAndName(author,name), new TypeToken<List<BookResponseDto>>(){}.getType());
     }
-    @PreAuthorize("hasRole('MODERATOR')")
-    @GetMapping("/bronBooks")
-    public List<BronResponse> bronBooks(){
-        return bronService.getAll();
-    }
+//    @PreAuthorize("hasRole('MODERATOR')")
+//    @GetMapping("/bronBooks")
+//    public List<BronResponse> bronBooks(){
+//        return bronService.getAll();
+//    }
  @PreAuthorize("hasRole('MODERATOR')")
     @GetMapping("/takeAwayBooks")
     public List<TakeAwayResponseDto> takeAwayBooks(){
         return takeAwayService.getAll();
+    }
+
+    @PermitAll
+    @GetMapping("getShelfInfos/{floorId}")
+    public List<ShelfResponse> getShelfinfos(@PathVariable UUID floorId){
+        return rowService.getShelfInfos(floorId);
     }
 
 }

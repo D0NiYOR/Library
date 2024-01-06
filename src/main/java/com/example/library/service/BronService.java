@@ -14,15 +14,15 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BronService {
-    private final BronRepository bronRepository;
-    private final ModelMapper modelMapper;
-    public String bron(BronDto bronDto){
-        bronRepository.save(modelMapper.map(bronDto, BronEntity.class));
-        return "saved";
-    }
-
-    public List<BronResponse> getAll() {
-        List<BronEntity> brons = bronRepository.findAll();
-        return modelMapper.map(brons, new TypeToken<List<BronResponse>>(){}.getType());
-    }
+//    private final BronRepository bronRepository;
+//    private final ModelMapper modelMapper;
+//    public String bron(BronDto bronDto){
+//        bronRepository.save(modelMapper.map(bronDto, BronEntity.class));
+//        return "saved";
+//    }
+//
+//    public List<BronResponse> getAll() {
+//        List<BronEntity> brons = bronRepository.findAll();
+//        return modelMapper.map(brons, new TypeToken<List<BronResponse>>(){}.getType());
+//    }
 }

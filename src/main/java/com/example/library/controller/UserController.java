@@ -24,11 +24,11 @@ import javax.sql.rowset.BaseRowSet;
 public class UserController {
     private final BronService bronService;
     private  final TakeAwayService takeAwayService;
-    @PermitAll
-    @PostMapping("/bron")
-    private  String bron(@Valid @RequestBody BronDto dto){
-        return bronService.bron(dto);
-    }
+//    @PermitAll
+//    @PostMapping("/bron")
+//    private  String bron(@Valid @RequestBody BronDto dto){
+//        return bronService.bron(dto);
+//    }
     @PermitAll
     @PostMapping("/take-away")
     private TakeAwayResponseDto takeAway(@Valid @RequestBody TakeAwayDto dto){

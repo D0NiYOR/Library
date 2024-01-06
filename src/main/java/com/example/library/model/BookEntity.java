@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -14,4 +16,5 @@ import lombok.Setter;
 public class BookEntity extends BaseEntity {
     private String name;
     private String author;
+    private UUID rowId;
 }

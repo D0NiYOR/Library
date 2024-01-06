@@ -1,5 +1,8 @@
 package com.example.library.config;
 
+import com.example.library.config.jwt.AuthenticationService;
+import com.example.library.config.jwt.JwtFilter;
+import com.example.library.config.jwt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import uz.pdp.learning_center_full.config.jwt.AuthenticationService;
-import uz.pdp.learning_center_full.config.jwt.JwtFilter;
-import uz.pdp.learning_center_full.config.jwt.JwtService;
+
 
 @Configuration
 @EnableWebSecurity
